@@ -1,0 +1,2 @@
+# Lodge_Complaint_Service_Management_System
+Service Managers with Django
