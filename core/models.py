@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 
+
 class Task(models.Model):
     PRIORITY_CHOICES = [
         ('LOW', 'Low'),
@@ -17,7 +18,7 @@ class Task(models.Model):
     ]
     Status_CHOICES = [
         ('OPEN', 'Open'),
-        ('CLOSED', 'Close'),
+        ('CLOSED', 'Closed'),
         ('IN_PROGRESS', 'In Progress'),
     ]
 

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from .forms import TaskForm, LoginForm, TaskCompletionForm
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from .services import TaskService
 from .models import Task, Comment
 from django.urls import reverse
@@ -16,11 +17,11 @@ def add_comment(request, task_id):
         if form.is_valid():
             comment_text = form.cleaned_data['comment_text']
             status = form.cleaned_data['status']
+
             # Create the comment associated with the task and the current user
             Comment.objects.create(task=task, user=request.user, comment_text=comment_text)
             # Update the task status
-            task.status = status
-            task.save()
+            
             return redirect(reverse('add_comment', kwargs={'task_id': task_id}))
     else:
         form = CommentForm()
@@ -48,37 +49,22 @@ def logout_view(request):
     logout(request)
     return redirect('user_login') 
 
-@login_required
-def view_assigned_tasks(request):
-    worker = request.user.service_worker  # Assuming user is authenticated and has a related service worker instance
-    assigned_tasks = Task.objects.filter(assignee=worker)
-    return render(request, 'tasks/assigned_tasks.html', {'assigned_tasks': assigned_tasks})
-
-@login_required
-def add_task_note(request, task_id):
-    task = get_object_or_404(Task, pk=task_id)
-    if request.method == 'POST':
-        form = TaskCompletionForm(request.POST)
-        if form.is_valid():
-            task.completion_reason = form.cleaned_data['completion_reason']
-            task.save()
-            return redirect('view_assigned_tasks')
-    else:
-        form = TaskCompletionForm()
-    return render(request, 'tasks/add_task_note.html', {'form': form})
 
 @login_required
 def complete_task(request, task_id):
     task = Task.objects.get(pk=task_id)
+    print(request)
     if request.method == 'POST':
-        form = TaskCompletionForm(request.POST, instance=task)
+        form = CommentForm(request.POST)
         if form.is_valid():
-            form.save()
-            # Redirect to the task detail page or any other appropriate page
-            return redirect('task_detail', task_id=task_id)
-    else:
-        form = TaskCompletionForm(instance=task)
-    return render(request, 'complete_task.html', {'form': form, 'task': task})
+            comment_text = form.cleaned_data['comment_text']
+            status = form.cleaned_data['status']
+            task.completion_reason=comment_text
+            task.status = status
+            task.completion_datetime=timezone.now()
+            task.save()
+    return redirect('task_list')
+    
 
 
 @login_required

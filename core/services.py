@@ -14,9 +14,3 @@ class TaskService:
             assignee=assignee
         )
 
-    @staticmethod
-    def complete_task(task_id, completion_reason):
-        task = Task.objects.get(pk=task_id)
-        task.completion_reason = completion_reason
-        task.completion_datetime = timezone.now()
-        task.save()

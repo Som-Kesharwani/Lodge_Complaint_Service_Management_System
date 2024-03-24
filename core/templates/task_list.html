@@ -14,6 +14,7 @@
                 <th>Deadline</th>
                 <th>Assignee</th>
                 <th>Status</th>
+                <th>Updates</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                 <td>{{ task.deadline }}</td>
                 <td>{{ task.assignee }}</td>
                 <td>{{ task.status }}</td>
+                <td>{{task.completion_reason}}</td>
             </tr>
             {% endfor %}
         </tbody>

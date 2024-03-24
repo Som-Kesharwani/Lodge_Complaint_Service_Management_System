@@ -5,7 +5,7 @@ from .models import Task
 class CommentForm(forms.Form):
     STATUS_CHOICES = [
         ('OPEN', 'Open'),
-        ('CLOSED', 'Close'),
+        ('CLOSED', 'Closed'),
         ('IN_PROGRESS', 'In Progress'),
     ]
     comment_text = forms.CharField(label='Comment', widget=forms.Textarea)
