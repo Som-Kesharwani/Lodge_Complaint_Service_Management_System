@@ -28,6 +28,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Install coverage package
+        run: pip install coverage
+
       - name: Run tests
         run: |
           python manage.py test
@@ -40,5 +43,4 @@ jobs:
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v2
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}  # Make sure to set this secret in your repository settings
-
+          token: ${{ secrets.CODECOV_TOKEN }}
