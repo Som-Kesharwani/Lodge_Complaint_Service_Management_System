@@ -6,7 +6,7 @@ Service Managers with Django
 2. Install the required dependencies by running:
 pip install -r requirements.txt
 
-(Make sure you have Python installed on your machine.)
+(Make sure you have Python installed on your machine.)<br/>
 3. Run the following command to execute the test cases:
 python manage.py test
 
