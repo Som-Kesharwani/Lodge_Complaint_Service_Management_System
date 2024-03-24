@@ -27,13 +27,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install django
+          pip install -r Lodge_Complaint_Service_Management_System/requirements.txt
 
       - name: Install coverage package
         run: pip install coverage
 
       - name: Run tests
-        run: |
-          python manage.py test
+        run: | 
+          python Lodge_Complaint_Service_Management_System/manage.py test
 
       - name: Generate coverage report
         run: |
