@@ -22,11 +22,11 @@ Quit the server with CTRL-BREAK.
 
 5. Once the server is running, access the application at `http://localhost:8080`.
 You can log in using the following admin credentials:
-- Username: admin
-- Password: admin
-Test User:
- user name : test
- password : Test@123
+- Username: admin<br/>
+- Password: admin<br/>
+Test User:<br/>
+ user name : test<br/>
+ password : Test@123<br/>
 6. You can create additional test users from the admin portal.
 Access the admin portal by visiting `http://localhost:8080/admin`.
 
