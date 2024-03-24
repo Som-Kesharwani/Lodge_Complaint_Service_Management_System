@@ -25,9 +25,8 @@ jobs:
           
       - name: Open Web Client Directory
         run: |
-          ls -la
-          cd ./src/webclient
-          ls -la
+          ls -la /usr/bin/git/*
+          ls -al  /home/runner/work/Lodge_Complaint_Service_Management_System/Lodge_Complaint_Service_Management_System/*
 
       - name: Install dependencies
         run: |
